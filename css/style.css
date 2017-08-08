@@ -1,0 +1,1124 @@
+/* --------------------------------
+
+http://meyerweb.com/eric/tools/css/reset/
+v2.0 | 20110126
+License: none (public domain)
+
+-------------------------------- */
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section {
+    display: block
+}
+
+body {
+    line-height: 1
+}
+
+ol,ul {
+    list-style: none
+}
+
+blockquote,q {
+    quotes: none
+}
+
+blockquote:before,blockquote:after,q:before,q:after {
+    content: '';
+    content: none
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0
+}
+
+/* --------------------------------
+
+Primary style
+
+-------------------------------- */
+*, *::after, *::before {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  color: #1a1a18;
+  background-color: #fff;
+  /* position: relative; */
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+svg g,
+svg path {
+    fill: inherit;
+}
+.svg-icon {
+  width: 1em;
+  height: 1em;
+}
+.svg-icon path,
+.svg-icon polygon,
+.svg-icon rect {
+  fill: #inherit;
+}
+.svg-icon circle {
+  stroke: #inherit;
+  stroke-width: 1;
+}
+
+input {
+  font-family: inherit;
+  font-size: 1.6rem;
+}
+
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  display: none;
+}
+
+select, input[type="search"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  border: none;
+}
+
+input[type="search"] {
+  border-radius: 0;
+  margin-top: 0;
+}
+
+select {
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.uxbox-select::after {
+  /* switcher arrow for select element */
+  content: '';
+  position: absolute;
+  z-index: 1;
+  right: 4px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  background: url(../img/uxbox-icons.svg) no-repeat 0 0;
+  pointer-events: none;
+}
+
+/* --------------------------------
+
+Patterns - reusable parts of our design
+
+-------------------------------- */
+.uxbox-text-replace {
+  /* replace text with image */
+  color: transparent;
+  text-indent: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.screen-reader-text {
+    clip: rect(1px, 1px, 1px, 1px);
+    height: 1px;
+    overflow: hidden;
+    position: absolute !important;
+    width: 1px;
+    word-wrap: normal !important;
+    /* Many screen reader and browser combinations announce broken words as they would appear visually. */
+}
+
+.screen-reader-text:focus {
+    background-color: #f1f1f1;
+    border-radius: 3px;
+    -webkit-box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+    clip: auto !important;
+    color: #21759b;
+    display: block;
+    font-size: 14px;
+    font-size: 0.875rem;
+    font-weight: 700;
+    height: auto;
+    left: 5px;
+    line-height: normal;
+    padding: 15px 23px 14px;
+    text-decoration: none;
+    top: 5px;
+    width: auto;
+    z-index: 100000;
+}
+
+/* --------------------------------
+
+Header
+
+-------------------------------- */
+.uxbox-main-header {
+  position: fixed!important;
+  bottom: 0;
+  top: auto;
+  width: 100%;
+  z-index: 9999;
+  height: 60px;
+  background-color: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-transition: -webkit-transform 0.3s;
+  -moz-transition: -moz-transform 0.3s;
+  transition: transform 0.3s;
+}
+.uxbox-main-header.nav-is-visible {
+}
+.uxbox-main-header::before {
+  /* never visible - this is used in jQuery to check the current MQ */
+  display: none;
+  content: 'mobile';
+}
+@media only screen and (min-width: 736px) {
+  .uxbox-main-header {
+    top: 0;
+    bottom: auto;
+    height: 80px;
+  }
+  .uxbox-main-header.nav-is-visible {
+    -webkit-transform: translateX(0);
+    -moz-transform: translateX(0);
+    -ms-transform: translateX(0);
+    -o-transform: translateX(0);
+    transform: translateX(0);
+  }
+  .uxbox-main-header::before {
+    content: 'desktop';
+  }
+}
+
+.uxbox-main-nav-wrapper {
+  padding: 0 5%;
+  width: 100%;
+}
+.uxbox-main-nav-wrapper::after {
+  clear: both;
+  content: "";
+  display: table;
+}
+
+.uxbox-logo {
+  display: inline-block;
+  height: 100%;
+  margin-left: 15px;
+  /* remove jump on iOS devices - when we fire the navigation */
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.uxbox-logo-mobile {position: absolute;clip: rect(0, 26px, 60px, 0);width: 26px;overflow: hidden;left: 50%;-webkit-transform-origin: 50% 50%;-ms-transform-origin: 50% 50%;transform-origin: 50% 50%;-webkit-transform: translateX(-13px) translateY(-5px) translateZ(0);transform: translateX(-50%);margin: 0;}
+.uxbox-logo a {
+  display: block;
+}
+.uxbox-logo svg {
+  width: 120px;
+  height: 60px;
+  display: inline-block;
+  padding-bottom: 8px;
+}
+.search-form-active .uxbox-00 {
+    fill: #fff;
+}
+.search-form-active .uxbox-logo-path:not(.uxbox-00),
+.uxbox-logo-mobile .uxbox-logo-path:not(.uxbox-00) {
+    display: none;
+}
+@media only screen and (min-width: 736px) {
+  .uxbox-main-nav-wrapper {
+    text-align: center;
+  }
+  .uxbox-logo {
+    position: absolute;
+    z-index: 3;
+    margin-left: 5%;
+  }
+  .uxbox-logo svg {
+    height: 80px;
+    width: 140px;
+    padding-bottom: 5px;
+  }
+}
+
+.uxbox-nav-trigger {
+  /* nav trigger - visible on small devices only */
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 50px;
+}
+.uxbox-nav-trigger span {
+  /* nav icon created in CSS */
+  position: absolute;
+  height: 2px;
+  width: 20px;
+  left: 50%;
+  top: 50%;
+  bottom: auto;
+  right: auto;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -ms-transform: translateX(-50%) translateY(-50%);
+  -o-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+  background-color: #000;
+  -webkit-transition: background-color 0.3s;
+  -moz-transition: background-color 0.3s;
+  transition: background-color 0.3s;
+}
+.uxbox-nav-trigger span::before, .uxbox-nav-trigger span::after {
+  /* upper and lower lines of the menu icon */
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  /* Force Hardware Acceleration */
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transition: -webkit-transform 0.3s;
+  -moz-transition: -moz-transform 0.3s;
+  transition: transform 0.3s;
+}
+.uxbox-nav-trigger span::before {
+  -webkit-transform: translateY(-6px);
+  -moz-transform: translateY(-6px);
+  -ms-transform: translateY(-6px);
+  -o-transform: translateY(-6px);
+  transform: translateY(-6px);
+}
+.uxbox-nav-trigger span::after {
+  -webkit-transform: translateY(6px);
+  -moz-transform: translateY(6px);
+  -ms-transform: translateY(6px);
+  -o-transform: translateY(6px);
+  transform: translateY(6px);
+}
+.nav-is-visible .uxbox-nav-trigger span {
+  background-color: rgba(255, 255, 255, 0);
+}
+.nav-is-visible .uxbox-nav-trigger span::before {
+  -webkit-transform: translateY(0) rotate(-45deg);
+  -moz-transform: translateY(0) rotate(-45deg);
+  -ms-transform: translateY(0) rotate(-45deg);
+  -o-transform: translateY(0) rotate(-45deg);
+  transform: translateY(0) rotate(-45deg);
+}
+.nav-is-visible .uxbox-nav-trigger span::after {
+  -webkit-transform: translateY(0) rotate(45deg);
+  -moz-transform: translateY(0) rotate(45deg);
+  -ms-transform: translateY(0) rotate(45deg);
+  -o-transform: translateY(0) rotate(45deg);
+  transform: translateY(0) rotate(45deg);
+}
+@media only screen and (min-width: 736px) {
+  .uxbox-nav-trigger {
+    display: none;
+  }
+}
+
+.uxbox-main-nav {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  width: 100%;
+/*   height: 100vh; */
+  overflow: auto;
+  background: #1f2029;
+  visibility: hidden;
+  -webkit-transition: visibility 0s 0.3s;
+  -moz-transition: visibility 0s 0.3s;
+  transition: visibility 0s 0.3s;
+}
+.uxbox-main-nav a, .uxbox-main-nav input[type="search"] {
+  display: block;
+  font-size: 1.6rem;
+  padding: 0 2em 0 1em;
+  line-height: 50px;
+  -webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
+  -moz-transition: -moz-transform 0.3s, opacity 0.3s;
+  transition: transform 0.3s, opacity 0.3s;
+}
+.uxbox-main-nav-wrapper a>svg {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform-origin: 50% 50%;
+    -ms-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+    -webkit-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+}
+.uxbox-main-nav input[type="search"] {
+  background-color: #292a37;
+  -webkit-transition: background-color 0.3s;
+  -moz-transition: background-color 0.3s;
+  transition: background-color 0.3s;
+}
+.uxbox-main-nav input[type="search"]:focus {
+  background-color: #333545;
+}
+.uxbox-main-nav.nav-is-visible {
+  -webkit-transition: visibility 0s;
+  -moz-transition: visibility 0s;
+  transition: visibility 0s;
+  visibility: visible;
+  -webkit-overflow-scrolling: touch;
+}
+@media only screen and (min-width: 736px) {
+  .uxbox-main-nav {
+    /* reset style */
+    position: static;
+    visibility: visible;
+    width: auto;
+    height: 80px;
+    background: transparent;
+    overflow: visible;
+    margin-left: 116px;
+    text-align: center;
+    margin-bottom: 0;
+  }
+  .uxbox-main-nav li {
+    display: inline-block;
+    height: 100%;
+    padding: 1.375em .4em;
+  }
+  .uxbox-main-nav a {
+    padding: .625em .8em;
+    line-height: 1;
+    border-bottom: none;
+    color: inherit;
+  }
+  .uxbox-main-nav a:hover {
+    opacity: .6;
+  }
+}
+
+/* --------------------------------
+
+Search Form
+
+-------------------------------- */
+.uxbox-main-search .uxbox-select {
+  /* hide select element on small devices */
+  display: none;
+}
+.uxbox-main-search .close {
+  /* 'X' icon to close search form - hidden on small devices */
+  display: none;
+}
+.uxbox-main-search input[type="search"] {
+  width: 100%;
+  color: #ffffff;
+}
+.uxbox-main-search input[type="search"]:focus {
+  outline: none;
+}
+.uxbox-main-search input[type="search"]::-webkit-input-placeholder {
+  color: #5c5d6a;
+}
+.uxbox-main-search input[type="search"]::-moz-placeholder {
+  color: #5c5d6a;
+}
+.uxbox-main-search input[type="search"]:-moz-placeholder {
+  color: #5c5d6a;
+}
+.uxbox-main-search input[type="search"]:-ms-input-placeholder {
+  color: #5c5d6a;
+}
+@media only screen and (min-width: 736px) {
+  .uxbox-main-search {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: #14151c;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: opacity 0.3s, visibility 0.3s;
+    -moz-transition: opacity 0.3s, visibility 0.3s;
+    transition: opacity 0.3s, visibility 0.3s;
+  }
+  .uxbox-main-search form {
+    position: relative;
+    height: 100%;
+    /* 170px (margin left) is the sum of the logo width (124px) and additional 46px margin (to separate the form form the logo) */
+    /* 116px (margin right) takes into account the space occupied by the a.uxbox-search-trigger and a.close */
+    margin: 0 calc(5% + 116px) 0 calc(5% + 170px);
+  }
+  .uxbox-main-search input[type="search"] {
+    font-size: 2.4rem;
+    height: 100%;
+    background-color: transparent;
+    /* don't overlap <select> element */
+    padding-right: 170px;
+  }
+  .uxbox-main-search .uxbox-select {
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    bottom: auto;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+    color: #5c5d6a;
+    font-size: 1.4rem;
+    overflow: hidden;
+  }
+  .uxbox-main-search span {
+    display: inline-block;
+  }
+  .uxbox-main-search option {
+    /* style <option> elements on Firefox */
+    color: #333545;
+    background-color: #ffffff;
+  }
+  .uxbox-main-search select {
+    /* the <select> element is not visible (if the list of options is not open) -  it is covered by the .selected-value element */
+    position: absolute;
+    right: 0;
+    top: 50%;
+    bottom: auto;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+    opacity: 0;
+    color: transparent;
+  }
+  .uxbox-main-search select:focus {
+    outline: none;
+  }
+  .uxbox-main-search select:focus + span.selected-value {
+    background-color: #3d3f4e;
+  }
+  .uxbox-main-search .selected-value {
+    /* this <span> element covers the <select> element - its content is changed (using JavaScript) and set equal to the selected <option> value */
+    /* its width automatically changes according to the text of the selected <option> (not possible with a <select> element) */
+    color: #ffffff;
+    /* clicking on this element will open the <select> drop-down list */
+    pointer-events: none;
+    -webkit-transition: background-color 0.3s;
+    -moz-transition: background-color 0.3s;
+    transition: background-color 0.3s;
+  }
+  .uxbox-main-search select, .uxbox-main-search .selected-value {
+    padding: 0.5em 1.7em 0.5em .3em;
+    font-size: 1.4rem;
+    border-radius: 3px;
+  }
+  .no-pointerevents .uxbox-main-search .selected-value {
+    /* if the browser doesn't support the pointer-events property, hide the .selected-value element */
+    display: none;
+  }
+  .no-pointerevents .uxbox-main-search select {
+    /* if the browser doesn't support the pointer-events property, show the <select> element */
+    position: relative;
+    color: #ffffff;
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+    transform: translateY(0);
+  }
+  .no-pointerevents .uxbox-main-search select:focus {
+    background-color: #3d3f4e;
+  }
+  .uxbox-main-search .close {
+    /* 'X' icon - used to close the search form */
+    display: inline-block;
+    position: absolute;
+    right: 5%;
+    top: 50%;
+    height: 40px;
+    width: 40px;
+    -webkit-transform: translateY(-50%) scale(0);
+    -moz-transform: translateY(-50%) scale(0);
+    -ms-transform: translateY(-50%) scale(0);
+    -o-transform: translateY(-50%) scale(0);
+    transform: translateY(-50%) scale(0);
+    -webkit-transition: -webkit-transform 0.3s;
+    -moz-transition: -moz-transform 0.3s;
+    transition: transform 0.3s;
+  }
+  .uxbox-main-search .close::before, .uxbox-main-search .close::after {
+    /* used to create the 'X' icon in css */
+    content: '';
+    position: absolute;
+    height: 20px;
+    width: 2px;
+    background-color: #ffffff;
+    left: 50%;
+    top: 50%;
+  }
+  .uxbox-main-search .close::before {
+    -webkit-transform: translateX(-50%) translateY(-50%) rotate(-45deg);
+    -moz-transform: translateX(-50%) translateY(-50%) rotate(-45deg);
+    -ms-transform: translateX(-50%) translateY(-50%) rotate(-45deg);
+    -o-transform: translateX(-50%) translateY(-50%) rotate(-45deg);
+    transform: translateX(-50%) translateY(-50%) rotate(-45deg);
+  }
+  .uxbox-main-search .close::after {
+    -webkit-transform: translateX(-50%) translateY(-50%) rotate(45deg);
+    -moz-transform: translateX(-50%) translateY(-50%) rotate(45deg);
+    -ms-transform: translateX(-50%) translateY(-50%) rotate(45deg);
+    -o-transform: translateX(-50%) translateY(-50%) rotate(45deg);
+    transform: translateX(-50%) translateY(-50%) rotate(45deg);
+  }
+  .uxbox-main-search.is-visible {
+    /* search form open */
+    opacity: 1;
+    visibility: visible;
+  }
+  .uxbox-main-search.is-visible .close {
+    -webkit-transform: translateY(-50%) scale(1) translateX(-70px);
+    -moz-transform: translateY(-50%) scale(1) translateX(-70px);
+    -ms-transform: translateY(-50%) scale(1) translateX(-70px);
+    -o-transform: translateY(-50%) scale(1) translateX(-70px);
+    transform: translateY(-50%) scale(1) translateX(-50px);
+    border: 1px solid #fff;
+  }
+  .animate-search .uxbox-main-search.is-visible {
+    /* trigger search form animation if <header> has the .animate-search class */
+    -webkit-animation: uxbox-slide-in 0.3s;
+    -moz-animation: uxbox-slide-in 0.3s;
+    animation: uxbox-slide-in 0.3s;
+  }
+}
+.uxbox-search-suggestions {
+  /* drowpdown with search suggestions - hidden on small devices */
+  display: none;
+}
+@media only screen and (min-width: 736px) {
+  .uxbox-search-suggestions {
+    display: block;
+    position: absolute;
+    top: 80px;
+    left: 0;
+    /* same width of <form> element */
+    width: calc( 90% - 286px);
+    padding: 2em;
+    /* same margin of <form> element */
+    margin: 0 calc(5% + 116px) 0 calc(5% + 170px);
+    background-color: #ffffff;
+    box-shadow: 0 4px 40px rgba(0, 0, 0, 0.39);
+  }
+  .uxbox-search-suggestions::after {
+    clear: both;
+    content: "";
+    display: table;
+  }
+  .uxbox-search-suggestions .quick-links, .uxbox-search-suggestions .news {
+    display: inline-block;
+  }
+  .uxbox-search-suggestions .quick-links {
+    float: right;
+    width: 140px;
+    text-align: right;
+  }
+  .uxbox-search-suggestions .news {
+    float: left;
+    width: calc(100% - 140px);
+  }
+  .uxbox-search-suggestions h3 {
+    margin-bottom: .5em;
+    padding-bottom: 1em;
+    color: #404040;
+    font-size: 1.2rem;
+    font-weight: 300;
+    border-bottom: 1px solid #d8d8d8;
+  }
+
+  .uxbox-search-suggestions a {
+    /* prevent the text from wrapping */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    padding: .2em 0;
+  }
+  .uxbox-search-suggestions a {
+    display: inline-block;
+    color: #333545;
+  }
+  .no-touch .uxbox-search-suggestions a:hover {
+    opacity: .8;
+  }
+  .uxbox-search-suggestions time {
+    font-size: 1.2rem;
+    color: #70727d;
+  }
+  .uxbox-search-suggestions .news li {
+    position: relative;
+    padding: 0.50em 0;
+    margin-bottom: 0.25em;
+  }
+  .uxbox-search-suggestions .news li:last-of-type {
+    margin-bottom: 0;
+  }
+  .uxbox-search-suggestions .image-wrapper {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    bottom: auto;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+  }
+  .uxbox-search-suggestions .image-wrapper img {
+    display: block;
+  }
+  .uxbox-search-suggestions .quick-links a {
+    padding: .5em 0;
+    font-size: 1.4rem;
+    line-height: 1.2;
+  }
+  .animate-search .is-visible .uxbox-search-suggestions {
+    /* trigger the dropdown animation if <header> has the .animate-search class */
+    -webkit-transform-origin: center top;
+    -moz-transform-origin: center top;
+    -ms-transform-origin: center top;
+    -o-transform-origin: center top;
+    transform-origin: center top;
+    /* Force Hardware Acceleration */
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-animation: uxbox-3d-rotation 0.5s 0.3s;
+    -moz-animation: uxbox-3d-rotation 0.5s 0.3s;
+    animation: uxbox-3d-rotation 0.5s 0.3s;
+    -webkit-animation-fill-mode: backwards;
+    -moz-animation-fill-mode: backwards;
+    animation-fill-mode: backwards;
+  }
+}
+.uxbox-search-trigger {
+  /* trigger serach form visibility - hidden on small devices */
+  display: none;
+}
+.search-form-visible .uxbox-main-nav-wrapper svg {
+    fill: #fff;
+}
+.uxbox-bag-trigger {
+    display: block;
+    position: relative;
+    z-index: 3;
+    height: 40px;
+    width: 40px;
+    margin: 1.25em 0 0 .5em;
+    float: right;
+    left: initial;
+    right: initial;
+    -webkit-transition: -webkit-transform 0.3s;
+    -moz-transition: -moz-transform 0.3s;
+    transition: transform 0.3s;
+    transform: translateY(-2px);
+    border: 1px solid transparent;
+}
+
+.uxbox-bag-trigger-mobile {
+    float: left;
+    /* position: absolute; */
+    /* left: 0; */
+    height: 60px;
+}
+.uxbox-bag-trigger-mobile .uxbox-bag-counter {
+    -webkit-transform-origin: 50% 50%;
+    -ms-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    margin: -5px auto auto -20%;
+}
+.search-form-active .uxbox-bag-trigger:not(.uxbox-bag-trigger-mobile) {
+    z-index: -1;
+    visibility: hidden;
+}
+.uxbox-bag-counter {
+    position: absolute;
+    z-index: 2;
+    color: #000;
+    font-size: 12px;
+    font-weight: 600;
+    top: 50%;
+    left: 50%;
+    -webkit-transform-origin: 50% 50%;
+    -ms-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    margin-top: 3px;
+}
+@media only screen and (min-width: 736px) {
+  .uxbox-search-trigger {
+  display: block;
+  position: relative;
+  z-index: 3;
+  height: 40px;
+  width: 40px;
+  margin: 1.25em 0 0 .5em;
+  float: right;
+  -webkit-transition: -webkit-transform 0.3s;
+  transition: -webkit-transform 0.3s;
+  -o-transition: transform 0.3s;
+  transition: transform 0.3s;
+  transition: transform 0.3s, -webkit-transform 0.3s;
+  background-color: white;
+  border: 1px solid #fff;
+  }
+  .uxbox-search-trigger::after, .uxbox-search-trigger:before {
+    content: '';
+    position: absolute;
+  }
+  .uxbox-search-trigger::before {
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translateX(-50%) translateY(-50%) scale(0);
+    -moz-transform: translateX(-50%) translateY(-50%) scale(0);
+    -ms-transform: translateX(-50%) translateY(-50%) scale(0);
+    -o-transform: translateX(-50%) translateY(-50%) scale(0);
+    transform: translateX(-50%) translateY(-50%) scale(0);
+    height: 100%;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 50%;
+    -webkit-transition: -webkit-transform 0.3s;
+    -moz-transition: -moz-transform 0.3s;
+    transition: transform 0.3s;
+  }
+  .uxbox-search-trigger.search-form-visible {
+    -webkit-transform: translateX(-70px);
+    -moz-transform: translateX(-70px);
+    -ms-transform: translateX(-70px);
+    -o-transform: translateX(-5vw);
+    transform: translateX(-70px);
+  }
+  .uxbox-search-trigger.search-form-visible::before {
+    -webkit-transform: translateX(-50%) translateY(-50%) scale(1);
+    -moz-transform: translateX(-50%) translateY(-50%) scale(1);
+    -ms-transform: translateX(-50%) translateY(-50%) scale(1);
+    -o-transform: translateX(-50%) translateY(-50%) scale(1);
+    transform: translateX(-50%) translateY(-50%) scale(1);
+  }
+  .uxbox-search-trigger svg:nth-child(2) {
+    display: none;
+  }
+  .search-form-active .uxbox-search-trigger svg:nth-child(1) {
+    display: none;
+  }
+  .search-form-active .uxbox-search-trigger svg:nth-child(2) {
+    display: block;
+    width: 25px;
+    height:25px;
+  }
+}
+
+/* --------------------------------
+
+Content cover layer
+
+-------------------------------- */
+.uxbox-cover-layer {
+  /* cover main content when search form is open - hidden on smal devices */
+  display: none;
+}
+@media only screen and (min-width: 736px) {
+  .uxbox-cover-layer {
+    display: block;
+    position: fixed;
+    z-index: 3;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: opacity 0.3s, visibility 0.3s;
+    -moz-transition: opacity 0.3s, visibility 0.3s;
+    transition: opacity 0.3s, visibility 0.3s;
+  }
+  .uxbox-cover-layer.search-form-visible {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+/* --------------------------------
+
+Page main content
+
+-------------------------------- */
+.uxbox-main-content {display: table;width: 100%;height: calc(170vh - 50px);position: relative;z-index: 2;background-color: #40508e;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;-webkit-transition: -webkit-transform 0.3s;-moz-transition: -moz-transform 0.3s;transition: transform 0.3s;}
+.uxbox-main-content .content-center {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+.uxbox-main-content .content-center h1 {
+  color: #ffffff;
+  font-size: 2.4rem;
+  margin-bottom: .6em;
+}
+.uxbox-mainnvnv-content .uxbox-download-btn {
+  background: #dd85ac;
+  color: #ffffff;
+  /* display: inline-block; */
+  padding: 1.4em 1.6em;
+  border-radius: 50em;
+  font-size: 1.4rem;
+  font-weight: bold;
+  box-shadow: 0 2px 18px rgba(0, 0, 0, 0.1);
+}
+.uxbox-main-content.nav-is-visible {
+
+}
+@media only screen and (min-width: 736px) {
+  .uxbox-main-content {
+    padding-top: 80px;
+  }
+  .uxbox-main-content .content-center h1 {
+    font-size: 3.6rem;
+  }
+  .uxbox-main-content.nav-is-visible {
+    -webkit-transform: translateX(0);
+    -moz-transform: translateX(0);
+    -ms-transform: translateX(0);
+    -o-transform: translateX(0);
+    transform: translateX(0);
+  }
+}
+
+/* --------------------------------
+
+JavaScript Disabled
+
+-------------------------------- */
+.no-js .uxbox-main-header {
+  height: auto;
+}
+.no-js .uxbox-main-header::after {
+  clear: both;
+  content: "";
+  display: table;
+}
+
+.no-js .uxbox-nav-trigger {
+  display: none;
+}
+
+.no-js .uxbox-main-nav-wrapper {
+  display: inline-block;
+  float: right;
+}
+
+.no-js .uxbox-main-nav {
+  position: static;
+  width: auto;
+  height: auto;
+  visibility: visible;
+  background-color: transparent;
+  float: right;
+}
+.no-js .uxbox-main-nav::after {
+  clear: both;
+  content: "";
+  display: table;
+}
+.no-js .uxbox-main-nav li {
+  display: inline-block;
+  float: left;
+}
+.no-js .uxbox-main-nav a {
+  border-bottom: 0;
+}
+
+.no-js .uxbox-search-trigger {
+  display: inline-block;
+  text-indent: 0;
+  color: #ffffff;
+  float: right;
+  line-height: 50px;
+}
+@media only screen and (min-width: 736px) {
+  .no-js .uxbox-search-trigger {
+    text-indent: 100%;
+    color: transparent;
+    line-height: normal;
+  }
+}
+
+.no-js .uxbox-main-search {
+  position: static;
+  opacity: 1;
+  visibility: visible;
+  padding: 2em 5%;
+  background: #333545;
+}
+.no-js .uxbox-main-search form {
+  margin: 0;
+}
+.no-js .uxbox-main-search input[type="search"] {
+  background: #333545;
+}
+.no-js .uxbox-main-search select {
+  position: relative;
+  color: #ffffff;
+  opacity: 1;
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -ms-transform: translateY(0);
+  -o-transform: translateY(0);
+  transform: translateY(0);
+}
+.no-js .uxbox-main-search select:focus {
+  background-color: #3d3f4e;
+}
+.no-js .uxbox-main-search .selected-value {
+  display: none;
+}
+
+
+/* Animations Stuff */
+
+.uxbox-animate {
+   -webkit-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
+  -webkit-transition: all 400ms ease-in-out;
+  transition: all 400ms ease-in-out;
+}
+
+
+@-webkit-keyframes uxbox-slide-in {
+  0% {
+    -webkit-transform: translateY(-100%);
+  }
+  100% {
+    -webkit-transform: translateY(0);
+  }
+}
+@-moz-keyframes uxbox-slide-in {
+  0% {
+    -moz-transform: translateY(-100%);
+  }
+  100% {
+    -moz-transform: translateY(0);
+  }
+}
+@keyframes uxbox-slide-in {
+  0% {
+    -webkit-transform: translateY(-100%);
+    -moz-transform: translateY(-100%);
+    -ms-transform: translateY(-100%);
+    -o-transform: translateY(-100%);
+    transform: translateY(-100%);
+  }
+  100% {
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+
+@-webkit-keyframes uxbox-3d-rotation {
+  0% {
+    -webkit-transform: perspective(1000px) rotateX(-90deg);
+  }
+  100% {
+    -webkit-transform: perspective(1000px) translateY(0);
+  }
+}
+@-moz-keyframes uxbox-3d-rotation {
+  0% {
+    -moz-transform: perspective(1000px) rotateX(-90deg);
+  }
+  100% {
+    -moz-transform: perspective(1000px) translateY(0);
+  }
+}
+@keyframes uxbox-3d-rotation {
+  0% {
+    -webkit-transform: perspective(1000px) rotateX(-90deg);
+    -moz-transform: perspective(1000px) rotateX(-90deg);
+    -ms-transform: perspective(1000px) rotateX(-90deg);
+    -o-transform: perspective(1000px) rotateX(-90deg);
+    transform: perspective(1000px) rotateX(-90deg);
+  }
+  100% {
+    -webkit-transform: perspective(1000px) translateY(0);
+    -moz-transform: perspective(1000px) translateY(0);
+    -ms-transform: perspective(1000px) translateY(0);
+    -o-transform: perspective(1000px) translateY(0);
+    transform: perspective(1000px) translateY(0);
+  }
+}
